@@ -1,7 +1,12 @@
 import 'package:acupad/pages/home.dart';
+import 'package:acupad/utils/preferences_util.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Get.putAsync(() => PreferencesUtils().init());
+
   runApp(const MyApp());
 }
 
