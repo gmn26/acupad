@@ -14,8 +14,12 @@ class _CheckInButtonState extends State<CheckInButton> {
   final preferencesController = Get.put(PreferencesController());
 
   void _changeStatus(PreferencesController controller) async {
+    try {
+      await NotificationServices.showNotification();
+    } catch (e) {
+      print(e);
+    }
     // Toggle the status in the controller
-    await NotificationServices.showNotification();
     await controller.changeStatus(!controller.status.value);
   }
 
