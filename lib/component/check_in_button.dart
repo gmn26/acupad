@@ -25,22 +25,37 @@ class _CheckInButtonState extends State<CheckInButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return GestureDetector(
-        onTap: () => _changeStatus(preferencesController),
-        child: CircleAvatar(
-          radius: 90.0,
-          backgroundColor:
-              preferencesController.status.value ? Colors.green : Colors.red,
-          foregroundColor: Colors.white,
-          child: Icon(
-            preferencesController.status.value
-                ? Icons.alarm_on
-                : Icons.alarm_off,
-            size: 90.0,
+    return Column(
+      children: [
+        Obx(
+          () {
+            return GestureDetector(
+              onTap: () => _changeStatus(preferencesController),
+              child: CircleAvatar(
+                radius: 90.0,
+                backgroundColor: preferencesController.status.value
+                    ? Colors.green
+                    : Colors.red,
+                foregroundColor: Colors.white,
+                child: Icon(
+                  preferencesController.status.value
+                      ? Icons.alarm_on
+                      : Icons.alarm_off,
+                  size: 90.0,
+                ),
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 24.0),
+        Text(
+          preferencesController.status.value ? "Alarm On" : "Alarm Off",
+          style: const TextStyle(
+            fontSize: 32.0,
+            color: Color(0xFFC6E9A7),
           ),
         ),
-      );
-    });
+      ],
+    );
   }
 }

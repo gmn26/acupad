@@ -69,91 +69,129 @@ class HomePage extends StatelessWidget {
                     Column(
                       children: [
                         CurrentTimeWidget(),
+                        SizedBox(height: 24.0),
                         CheckInButton(),
                       ],
                     ),
                   ],
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Jam Check In",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            "15:00",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 52.0,
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Jam Notifikasi Terakhir",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.w500,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.lock_clock,
+                                color: Color(0xFF182843),
+                              ),
                             ),
-                          ),
-                          Text(
-                            "15:00",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.white,
+                            SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Jam Check In",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  "15:00",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Jam Notifikasi Berikutnya",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.w500,
+                      SizedBox(height: 16.0),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.punch_clock,
+                                color: Color(0xFF182843),
+                              ),
                             ),
-                          ),
-                          Text(
-                            "15:00",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.white,
+                            SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Jam Notifikasi Terakhir",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  "15:00",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 16.0),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.0),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: Icon(
+                                Icons.skip_next,
+                                color: Color(0xFF182843),
+                              ),
+                            ),
+                            SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Jam Notifikasi Berikutnya",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  "15:00",
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
