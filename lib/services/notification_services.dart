@@ -1,4 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationServices {
   static final FlutterLocalNotificationsPlugin
@@ -39,14 +41,34 @@ class NotificationServices {
   static Future<void> showNotification() async {
     _flutterLocalNotificationsPlugin.show(
       0,
-      "Judul",
-      "Isi",
+      "PATIENT REMINDER!!",
+      "Jangan lupa membalikkan badan pasien segera!",
       const NotificationDetails(
         android: AndroidNotificationDetails(
           "0",
           "Notif",
+          importance: Importance.max,
         ),
       ),
     );
+  }
+
+  static Future<void> delayedNotification() async {
+    tz.initializeTimeZones();
+    _flutterLocalNotificationsPlugin.zonedSchedule(
+        0,
+        "PATIENT REMINDER!! (Delayed)",
+        "Jangan lupa membalikkan badan pasien segera!",
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        const NotificationDetails(
+          android: AndroidNotificationDetails(
+            "0",
+            "Notif",
+            importance: Importance.max,
+          ),
+        ),
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle);
   }
 }
