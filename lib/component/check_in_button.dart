@@ -1,5 +1,4 @@
 import 'package:acupad/controller/preferences_controller.dart';
-import 'package:acupad/services/notification_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,12 +14,12 @@ class _CheckInButtonState extends State<CheckInButton> {
 
   void _changeStatus(PreferencesController controller) async {
     try {
-      await NotificationServices.delayedNotification();
+      // await NotificationServices.showNotification();
+      // Toggle the status in the controller
+      await controller.changeStatus(!controller.status.value);
     } catch (e) {
-      // print(e);
+      debugPrint(e.toString());
     }
-    // Toggle the status in the controller
-    await controller.changeStatus(!controller.status.value);
   }
 
   @override

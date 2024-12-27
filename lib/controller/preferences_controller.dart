@@ -19,15 +19,32 @@ class PreferencesController extends GetxController {
   Future<void> _loadStatus() async {
     status.value = _preferencesUtils.getCheckedIn() ?? false;
     checkInTime.value = _preferencesUtils.getCheckInTime() ?? "-";
-    lastNotif.value = _preferencesUtils.getCheckInTime() ?? "-";
-    nextNotif.value = _preferencesUtils.getCheckInTime() ?? "-";
+    lastNotif.value = _preferencesUtils.getLastNotif() ?? "-";
+    nextNotif.value = _preferencesUtils.getNextNotif() ?? "-";
   }
 
   Future<void> changeStatus(bool status) async {
     try {
       await _preferencesUtils.setCheckedIn(status);
+      bool? stat = await _preferencesUtils.getCheckedIn() ?? false;
+      if(stat){
+        await _preferencesUtils.setCheckedInTime("${DateTime.now().hour}:${DateTime.now().minute}");
+        await _preferencesUtils.setLastNotif("${DateTime.now().hour}:${DateTime.now().minute}");
+        await _preferencesUtils.setNextNotif("${DateTime.now().hour+2}:${DateTime.now().minute}");
+      }else{
+        await _preferencesUtils.setNextNotif("-");
+      }
       await _loadStatus();
     } catch (error) {
+      log("Error updating status: $error");
+    }
+  }
+
+  Future<void> notifRunning() async {
+    try {
+      await _preferencesUtils.setLastNotif("${DateTime.now().hour}:${DateTime.now().minute}");
+      await _preferencesUtils.setNextNotif("${DateTime.now().hour+2}:${DateTime.now().minute}");
+    } catch(error) {
       log("Error updating status: $error");
     }
   }

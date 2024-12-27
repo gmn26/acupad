@@ -40,13 +40,13 @@ class PrefInfo extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
+                    Obx(()=>Text(
                       preferencesController.checkInTime.value,
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
                       ),
-                    ),
+                    )),
                   ],
                 ),
               ],
@@ -77,13 +77,13 @@ class PrefInfo extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
+                    Obx(()=>Text(
                       preferencesController.lastNotif.value,
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
                       ),
-                    ),
+                    )),
                   ],
                 ),
               ],
@@ -114,13 +114,13 @@ class PrefInfo extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
-                      preferencesController.lastNotif.value,
+                    Obx(()=>Text(
+                      preferencesController.nextNotif.value,
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.white,
                       ),
-                    ),
+                    )),
                   ],
                 ),
               ],

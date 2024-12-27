@@ -1,5 +1,7 @@
+import 'package:acupad/controller/preferences_controller.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:get/get.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationServices {
@@ -39,18 +41,25 @@ class NotificationServices {
   }
 
   static Future<void> showNotification() async {
-    _flutterLocalNotificationsPlugin.show(
-      0,
-      "PATIENT REMINDER!!",
-      "Jangan lupa membalikkan badan pasien segera!",
-      const NotificationDetails(
-        android: AndroidNotificationDetails(
-          "0",
-          "Notif",
-          importance: Importance.max,
+    try{
+      final preferencesController = Get.put(PreferencesController());
+      preferencesController.notifRunning();
+      _flutterLocalNotificationsPlugin.show(
+        0,
+        "PATIENT REMINDER!!",
+        "Jangan lupa membalikkan badan pasien segera!",
+        const NotificationDetails(
+          android: AndroidNotificationDetails(
+            "0",
+            "Notif",
+            importance: Importance.max,
+          ),
         ),
-      ),
-    );
+      );
+    }catch(err){
+      print(err);
+    }
+
   }
 
   static Future<void> delayedNotification() async {
