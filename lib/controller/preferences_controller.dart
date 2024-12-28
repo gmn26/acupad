@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:acupad/utils/preferences_util.dart';
+import 'package:acupad/utils/time_format_util.dart';
 import 'package:get/get.dart';
 
 class PreferencesController extends GetxController {
@@ -28,9 +29,9 @@ class PreferencesController extends GetxController {
       await _preferencesUtils.setCheckedIn(status);
       bool? stat = await _preferencesUtils.getCheckedIn() ?? false;
       if(stat){
-        await _preferencesUtils.setCheckedInTime("${DateTime.now().hour}:${DateTime.now().minute}");
-        await _preferencesUtils.setLastNotif("${DateTime.now().hour}:${DateTime.now().minute}");
-        await _preferencesUtils.setNextNotif("${DateTime.now().hour+2}:${DateTime.now().minute}");
+        await _preferencesUtils.setCheckedInTime(TimeFormatUtils.formatTime("${DateTime.now().hour}:${DateTime.now().minute}"));
+        await _preferencesUtils.setLastNotif(TimeFormatUtils.formatTime("${DateTime.now().hour}:${DateTime.now().minute}"));
+        await _preferencesUtils.setNextNotif(TimeFormatUtils.formatTime("${DateTime.now().hour}:${DateTime.now().minute}", addTwoHours: true));
       }else{
         await _preferencesUtils.setNextNotif("-");
       }
