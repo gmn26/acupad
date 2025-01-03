@@ -1,4 +1,4 @@
-package com.example.acupad
+package com.gmn26.acupad
 
 import io.flutter.embedding.android.FlutterActivity
 
