@@ -46,6 +46,7 @@ class NotificationServices {
           "0",
           "Notif",
           importance: Importance.max,
+          sound: RawResourceAndroidNotificationSound('notification_sound'),
         ),
       ),
     );
