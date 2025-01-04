@@ -9,7 +9,7 @@ class NotificationServices {
 
   static Future<void> initialize() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('notification_icon');
 
     const DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings(
@@ -45,6 +45,7 @@ class NotificationServices {
         android: AndroidNotificationDetails(
           "0",
           "Notif",
+          icon: 'notification_icon',
           importance: Importance.max,
           sound: RawResourceAndroidNotificationSound('notification_sound'),
         ),
