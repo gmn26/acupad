@@ -40,7 +40,7 @@
               />
             <meta-data
                 android:name="flutterEmbedding"
-                android:value="2" />
+                android:value="0" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
