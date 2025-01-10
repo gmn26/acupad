@@ -1,4 +1,5 @@
 import 'package:acupad/pages/home.dart';
+import 'package:acupad/pages/login.dart';
 import 'package:acupad/services/notification_services.dart';
 import 'package:acupad/utils/preferences_util.dart';
 import 'package:acupad/utils/time_format_util.dart';
@@ -7,35 +8,40 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 
-@pragma('vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+@pragma(
+    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
 void callbackDispatcher() {
   Workmanager().executeTask((taskName, inputData) async {
     try {
       // Inisialisasi SharedPreferences
       final prefs = await SharedPreferences.getInstance();
-      bool? checkedIn = prefs.getBool('checked_in') ?? false; // Default ke false jika null
-
-      // print("Periodic Task berjalan: $taskName");
-      // print("Status 'checked_in': $checkedIn");
+      bool? checkedIn = prefs.getBool('checked_in') ?? false;
 
       if (checkedIn) {
         // Jalankan notifikasi jika 'checked_in' bernilai true
         try {
           await NotificationServices.showNotification();
-          await prefs.setString('last_notif', TimeFormatUtils.formatTime("${DateTime.now().hour}:${DateTime.now().minute}"));
-          await prefs.setString('next_notif', TimeFormatUtils.formatTime("${DateTime.now().hour}:${DateTime.now().minute}", addTwoHours: true));
-          // print("Notifikasi ditampilkan karena 'checked_in' bernilai true.");
+          await prefs.setString(
+              'last_notif',
+              TimeFormatUtils.formatTime(
+                  "${DateTime.now().hour}:${DateTime.now().minute}"));
+          await prefs.setString(
+              'next_notif',
+              TimeFormatUtils.formatTime(
+                  "${DateTime.now().hour}:${DateTime.now().minute}",
+                  addTwoHours: true));
         } catch (e) {
-          // print("Error saat menampilkan notifikasi: $e");
+          debugPrint("Error saat menampilkan notifikasi: $e");
         }
       } else {
-        // print("Tugas di-skip karena 'checked_in' bernilai false atau null.");
+        debugPrint(
+            "Tugas di-skip karena 'checked_in' bernilai false atau null.");
       }
 
-      return Future.value(true); // Indikasi sukses
+      return Future.value(true);
     } catch (e) {
-      // print("Error dalam callbackDispatcher: $e");
-      return Future.value(false); // Indikasi gagal
+      debugPrint("Error dalam callbackDispatcher: $e");
+      return Future.value(false);
     }
   });
 }
@@ -47,8 +53,9 @@ void main() async {
 
   Workmanager().initialize(
       callbackDispatcher, // The top level function, aka callbackDispatcher
-      isInDebugMode: false // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
-  );
+      isInDebugMode:
+          false // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
+      );
 
   Workmanager().registerPeriodicTask(
     "periodic-notif",
@@ -68,6 +75,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Acupad',
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFF182843),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
