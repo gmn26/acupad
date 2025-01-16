@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
-class PatientCardListItem extends StatelessWidget{
+class PatientCardListItem extends StatelessWidget {
   const PatientCardListItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        border: Border(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        border: const Border(
+          right: BorderSide(
+            color: Color(0xFFDDDDDD),
+            width: 1.0,
+          ),
           bottom: BorderSide(
-            color: Color(0xFF000000),
+            color: Color(0xFFDDDDDD),
             width: 1.0,
           ),
         ),
@@ -28,15 +33,30 @@ class PatientCardListItem extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Halo, Ghazy Muhari Novrial!",
+                  "Mamang Resing",
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                     fontSize: 16.0,
                   ),
                 ),
-                Text("Status : Checked In",
+                Text(
+                  "Status : Checked In",
                   style: TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "Last Checked : 10.00AM",
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.white,
+                  ),
+                ),
+                Text("Next Reminder : 12.00AM",
+                  style: TextStyle(
+                    fontSize: 12.0,
                     color: Colors.white,
                   ),
                 ),

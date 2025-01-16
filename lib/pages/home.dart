@@ -87,6 +87,7 @@ class HomePage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Column(
+                        spacing: 16.0,
                         children: [
                           PatientCardListItem(),
                           PatientCardListItem(),

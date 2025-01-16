@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
+import 'package:camera/camera.dart';
 
 @pragma(
     'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
@@ -46,10 +47,13 @@ void callbackDispatcher() {
   });
 }
 
+late List<CameraDescription> _cameras;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Get.putAsync(() => PreferencesUtils().init());
   await NotificationServices.initialize();
+  _cameras = await availableCameras();
 
   Workmanager().initialize(
       callbackDispatcher, // The top level function, aka callbackDispatcher
